@@ -1,10 +1,19 @@
 <template>
   <div class="logo">
-    <div class="logo-inner">
-      <img src="~/assets/nic.jpg" alt="">
+    <div class="logo-inner" :style="`background:url(${logo}) no-repeat 70%;background-size:cover;`">
+      <!-- <img src="~/assets/psb.jpeg" alt=""> -->
     </div>
   </div>
 </template>
+<script>
+export default {
+  data(){
+    return {
+      logo: require('~/assets/psb.jpeg')
+    }
+  }
+}
+</script>
 
 <style lang="less">
 .logo {

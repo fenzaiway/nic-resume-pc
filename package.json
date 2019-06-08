@@ -1,7 +1,7 @@
 {
   "name": "nicholas-resume",
   "version": "1.0.0",
-  "description": "nicholas简历",
+  "description": "nicholas简历,参考：http://fangjiesong.top/",
   "author": "lianggf",
   "private": true,
   "scripts": {
@@ -16,7 +16,8 @@
     "koa": "^2.6.2",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "timeline-vuejs": "^1.0.3"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"
