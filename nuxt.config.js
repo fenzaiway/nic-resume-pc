@@ -1,6 +1,11 @@
+const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+  router: {
+    base: '/nic-resume-pc/demo/'
+  }
+} : {}
 module.exports = {
   mode: 'spa',
-
+  ...routerBase,
   /*
   ** Headers of the page
   */
@@ -9,13 +14,15 @@ module.exports = {
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { 'http-equiv': 'X-UA-Compatible', content: 'ie=edge,chrome=1' },
+      { name: 'renderer', content: 'webkit' },
+      { name: 'viewport', content: 'initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'http://fangjiesong.top/css/iconfont/iconfont.css' },
-      { rel: 'stylesheet', href: 'http://fangjiesong.top/css/iconfont/iconfont.css' },
+      // { rel: 'stylesheet', href: 'http://fangjiesong.top/css/iconfont/iconfont.css' },
+      { rel: 'stylesheet', href: 'https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css' },
     ]
   },
 
@@ -29,6 +36,7 @@ module.exports = {
   */
   css: [
     'ant-design-vue/dist/antd.css',
+    '~/assets/css/iconfont.css',
     '~/assets/css/reset.css',
     '~/assets/css/main.less'
   ],

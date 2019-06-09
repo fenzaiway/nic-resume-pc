@@ -16,19 +16,24 @@
     </div>
     <!-- 导航 -->
     <a-affix :offsetTop="this.navTop">
-      <nav class="nav-bar">
-          <div class="navmove" style="left: 970px; width: 78px;"></div>
-          <ul class="menu f-r">
-            <li class="active"><span>关于我</span></li>
-            <li class=""><span>工作经历</span></li>
-            <li class=""><span>项目经验</span></li>
-            <li class=""><span>工作技能</span></li>
-            <li class=""><span>联系方式</span></li>
-          </ul>
+      <nav class="nav-bar clear">
+          <div class="navmove" :style="`left: ${currentLeft}px; width: ${currentWidth}px;`"></div>
+          <transition name="custom-classes-transition" enter-active-class="animated fadeInDown"
+            leave-active-class="animated slideOutUp"
+            :duration="500">
+            <ul v-show="showAppNav" class="menu f-r">
+              <li :class="{'active': currentIndex==0}"><span>关于我</span></li>
+              <li :class="{'active': currentIndex==1}"><span>工作经历</span></li>
+              <li :class="{'active': currentIndex==2}"><span>项目经验</span></li>
+              <li :class="{'active': currentIndex==3}"><span>工作技能</span></li>
+              <li :class="{'active': currentIndex==4}"><span>联系方式</span></li>
+            </ul>
+          </transition>
+          <a-icon @click="showAppNavHandler" class="f-r app-nav" type="bars" />
       </nav>
     </a-affix>
     <!-- 关于我 -->
-    <div class="about-me">
+    <div class="nav-item about-me">
       <div class="headline  fadeIn animated" data-wow-duration="1s" style="visibility: visible; animation-duration: 1s; animation-name: fadeIn;">
 				<span>关于我</span>
 				<hr>
@@ -82,7 +87,7 @@
       </a-card>
     </div>
     <!-- 工作经历 -->
-    <div class="work-exp">
+    <div class="nav-item work-exp">
       <div class="headline  fadeIn animated" data-wow-duration="1s" style="visibility: visible; animation-duration: 1s; animation-name: fadeIn;">
 				<span>工作经历</span>
 				<hr>
@@ -93,7 +98,7 @@
       </div>
     </div>
     <!-- 项目经验 -->
-    <div class="project-exp">
+    <div class="nav-item project-exp">
       <div class="headline  fadeIn animated" data-wow-duration="1s" style="visibility: visible; animation-duration: 1s; animation-name: fadeIn;">
 				<span>项目经验</span>
 				<hr>
@@ -113,7 +118,7 @@
       </div>
     </div>
     <!-- 技能 -->
-    <div class="work-skill">
+    <div class="nav-item work-skill">
       <div class="headline  fadeIn animated" data-wow-duration="1s" style="visibility: visible; animation-duration: 1s; animation-name: fadeIn;">
 				<span>技能</span>
 				<hr>
@@ -188,7 +193,7 @@
       </div>
     </div>
     <!-- 联系方式 -->
-    <div class="contact-way">
+    <div class="nav-item contact-way">
       <div class="headline  fadeIn animated" data-wow-duration="1s" style="visibility: visible; animation-duration: 1s; animation-name: fadeIn;">
 				<span>联系方式</span>
 				<hr>
@@ -269,10 +274,12 @@
 import Logo from '~/components/Logo.vue'
 import Timeline from '~/components/Timeline'
 import { Icon } from 'ant-design-vue';
+import navMixin from './navMixin'
 const IconFont = Icon.createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/font_1232920_w36amvz0cgs.js',
 })
 export default {
+  mixins: [navMixin],
   components: {
     Logo,
     Timeline,
@@ -284,6 +291,7 @@ export default {
   data(){
     return {
       navTop: 0,
+      showAppNav: false,
       bgImg: [
         require('static/bg/1.jpg'),
         require('static/bg/2.jpg'),
@@ -376,6 +384,11 @@ export default {
           `
         }
       ]
+    }
+  },
+  methods: {
+    showAppNavHandler(){
+      this.showAppNav = !this.showAppNav
     }
   }
 }
@@ -490,6 +503,7 @@ export default {
   color: #333;
   word-spacing: 5px;
   padding-bottom: 15px;
+  margin-top: 10px;
 }
 
 .links {
@@ -502,6 +516,9 @@ export default {
     padding: 0 15px;
     background: #3f4245;
     position: relative;
+  .app-nav{
+    display: none;
+  }
   .navmove {
       display: inline-block;
       position: absolute;
@@ -816,4 +833,7 @@ export default {
         }
     }
   }
+</style>
+<style lang="less">
+  @import './media.less';
 </style>
