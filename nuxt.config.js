@@ -61,6 +61,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    publicPath: '/static/',
     /*
     ** You can extend webpack config here
     */
