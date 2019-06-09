@@ -119,6 +119,19 @@ export default {
                 this.currentIndex = arr.length>0 ? arr.length-1 : 0
                 this.setCurrentNav(this.currentIndex)
             })
+            let checkIsApp = windowWidth=>{
+                if(windowWidth>=768){
+                    this.showAppNav = true
+                }else{
+                    this.showAppNav = false
+                }
+            }
+            let windowWidth = document.querySelector('body,html').offsetWidth
+            checkIsApp(windowWidth)
+            eventUtils.addHandler(window, 'resize', e=>{
+                windowWidth = document.querySelector('body,html').offsetWidth
+                checkIsApp(windowWidth)
+            })
         }
     }
 }
