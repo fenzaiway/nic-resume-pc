@@ -18,5 +18,6 @@ $ npm start
 # generate static project
 $ npm run generate
 ```
+[预览](https://fenzaiway.github.io/nic-resume-pc/demo/).
 
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
