@@ -73,7 +73,8 @@ export default {
                 })
                 eventUtils.addHandler(item, 'click', e=>{
                     this.currentIndex = index
-                    this.showAppNav = false
+                    // this.showAppNav = false
+                    this.checkIsApp(document.querySelector('body,html').offsetWidth)
                     this.scrollTo()
                 })
             })
@@ -119,19 +120,19 @@ export default {
                 this.currentIndex = arr.length>0 ? arr.length-1 : 0
                 this.setCurrentNav(this.currentIndex)
             })
-            let checkIsApp = windowWidth=>{
-                if(windowWidth>=768){
-                    this.showAppNav = true
-                }else{
-                    this.showAppNav = false
-                }
-            }
             let windowWidth = document.querySelector('body,html').offsetWidth
-            checkIsApp(windowWidth)
+            this.checkIsApp(windowWidth)
             eventUtils.addHandler(window, 'resize', e=>{
                 windowWidth = document.querySelector('body,html').offsetWidth
-                checkIsApp(windowWidth)
+                this.checkIsApp(windowWidth)
             })
+        },
+        checkIsApp(windowWidth){
+            if(windowWidth>=768){
+                this.showAppNav = true
+            }else{
+                this.showAppNav = false
+            }
         }
     }
 }
