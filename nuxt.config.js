@@ -1,6 +1,6 @@
 const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
   router: {
-    base: '/nic-resume-pc/demo/'
+    base: '/nic-resume-pc-pre/'
   }
 } : {}
 module.exports = {

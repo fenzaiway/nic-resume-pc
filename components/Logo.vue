@@ -9,7 +9,7 @@
 export default {
   data(){
     return {
-      logo: require('~/assets/psb.jpeg')
+      logo: require('~/assets/nic-1.jpg')
     }
   }
 }
